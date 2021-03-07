@@ -1,0 +1,34 @@
+<div class="books">
+  <h2 class="books__title">New Books</h2>
+  <div class="row">
+    <div class="books__grid" *ngFor="let book of books">
+      <div class="content">
+        <img src="{{ book.image }}" alt="hinhanh" />
+        <div class="content__inner">
+          <h2 class="title">{{ book.title }}</h2>
+          <p class="description">{{ book.content }}</p>
+          <a class="author">{{ book.author }}</a>
+        </div>
+        <div class="menu-mini">
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" xPosition="before">
+            <button mat-menu-item [routerLink]="['/update', book.id]">
+              <mat-icon>change_circle</mat-icon>
+              <span>Edit</span>
+            </button>
+            <button mat-menu-item (click)="delBook(book.id)">
+              <mat-icon>clear</mat-icon>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

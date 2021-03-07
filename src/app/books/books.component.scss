@@ -1,0 +1,49 @@
+.books {
+  margin-top: 50px;
+  &__title{
+    font-size: 35px;
+    margin-bottom: 30px;
+  }
+  .row {
+    .books__grid {
+      padding: 0 15px;
+      width: calc(100% / 4);
+      margin-bottom: 30px;
+    }
+  }
+  .content {
+    box-shadow: 6px 6px 16px 0 rgb(0 0 0 / 16%);
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .menu-mini {
+      position: absolute;
+      top: 0;
+      right: 0;
+      mat-icon{
+        color:white;
+      }
+    }
+    img {
+      width: 100%;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    &__inner {
+      padding: 15px;
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+      .description {
+        margin-bottom: 50px;
+        flex-grow: 1;
+      }
+      .author {
+        color: #fd2f2e;
+        font-size: 14px;
+      }
+    }
+  }
+}

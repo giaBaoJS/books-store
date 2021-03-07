@@ -1,0 +1,21 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+  margin-top: 50px;
+  h3 {
+    font-size: 30px;
+  }
+}
+mat-form-field {
+  width: 100%;
+}
+.form__button {
+  text-align: center;
+}
+.mat-raised-button {
+  margin-top: 30px;
+  min-width: 100%;
+}

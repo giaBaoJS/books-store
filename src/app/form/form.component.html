@@ -1,0 +1,36 @@
+<div class="form-group">
+  <h3>{{ isUpdate ? "Update Book" : "Add Book" }}</h3>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit(bookForm.value)">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        placeholder="Title of book"
+        required
+        formControlName="title"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Content</mat-label>
+      <textarea matInput required formControlName="content"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Author</mat-label>
+      <input
+        matInput
+        placeholder="Author name"
+        required
+        formControlName="author"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Image</mat-label>
+      <input matInput placeholder="Image" formControlName="image" />
+    </mat-form-field>
+    <div class="form__button">
+      <button mat-raised-button color="primary" type="submit">
+        {{ isUpdate ? "Update" : "Submit" }}
+      </button>
+    </div>
+  </form>
+</div>
