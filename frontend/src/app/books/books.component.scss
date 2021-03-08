@@ -1,8 +1,14 @@
 .books {
   margin-top: 50px;
+  &__bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+  }
   &__title {
     font-size: 35px;
-    margin-bottom: 30px;
   }
   .row {
     .books__grid {

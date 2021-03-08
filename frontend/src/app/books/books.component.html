@@ -1,8 +1,15 @@
 <div class="books">
-  <div class="books_search"></div>
-  <h2 class="books__title">New Books</h2>
+  <div class="books__search"></div>
+  <div class="books__bar">
+    <h2 class="books__title">New Books</h2>
+    <a mat-flat-button color="accent" routerLink="/add">ADD +</a>
+  </div>
   <div class="row">
-    <ngx-spinner [fullScreen]="false" type="ball-clip-rotate-multiple" size="large">
+    <ngx-spinner
+      [fullScreen]="false"
+      type="ball-clip-rotate-multiple"
+      size="large"
+    >
       <p class="loading">Loading .....</p>
     </ngx-spinner>
     <div
@@ -12,14 +19,16 @@
       <div class="content">
         <img src="{{ book.image }}" alt="hinhanh" />
         <div class="content__inner">
-          <a routerLink="/books/detail/{{book._id}}" class="title">{{ book.title }}</a>
+          <a routerLink="/books/detail/{{ book._id }}" class="title">{{
+            book.title
+          }}</a>
           <p class="description">{{ book.content }}</p>
           <a class="author">{{ book.author }}</a>
         </div>
         <div class="menu-mini">
           <button
             mat-icon-button
-            [matMenuTriggerFor]="menu"  
+            [matMenuTriggerFor]="menu"
             aria-label="Example icon-button with a menu"
             class="menu-mini__icon"
           >
