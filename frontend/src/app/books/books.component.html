@@ -2,6 +2,9 @@
   <div class="books_search"></div>
   <h2 class="books__title">New Books</h2>
   <div class="row">
+    <ngx-spinner [fullScreen]="false" type="ball-clip-rotate-multiple" size="large">
+      <p class="loading">Loading .....</p>
+    </ngx-spinner>
     <div
       class="books__grid"
       *ngFor="let book of books | paginate: { itemsPerPage: 4, currentPage: p }"
@@ -9,7 +12,7 @@
       <div class="content">
         <img src="{{ book.image }}" alt="hinhanh" />
         <div class="content__inner">
-          <h2 class="title">{{ book.title }}</h2>
+          <a routerLink="/books/detail/{{book._id}}" class="title">{{ book.title }}</a>
           <p class="description">{{ book.content }}</p>
           <a class="author">{{ book.author }}</a>
         </div>

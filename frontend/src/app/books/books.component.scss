@@ -41,6 +41,12 @@
       display: flex;
       flex-grow: 1;
       flex-direction: column;
+      .title{
+        font-weight: 500;
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: #3f51b5;
+      }
       .description {
         margin-bottom: 30px;
         overflow: hidden;
@@ -65,5 +71,8 @@
         }
       }
     }
+  }
+  .loading{
+    color: #fff;
   }
 }

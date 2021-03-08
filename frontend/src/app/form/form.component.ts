@@ -11,7 +11,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 })
 export class FormComponent implements OnInit {
   isUpdate = false;
-  id;
+  id: string;
   successTemplate = 'Thêm thành công !';
   errorTemplate = 'Không thể thêm, đã xảy ra lỗi !';
 
@@ -62,5 +62,8 @@ export class FormComponent implements OnInit {
         this.router.navigateByUrl('/books');
       });
     }
+  }
+  clearData() {
+    this.bookForm.reset();
   }
 }

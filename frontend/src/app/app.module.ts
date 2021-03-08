@@ -16,6 +16,8 @@ import { MaterialModule } from './module/material/material.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { FooterComponent } from './footer/footer.component';
+import { BookDetailComponent } from './books/book-detail/book-detail.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { FooterComponent } from './footer/footer.component';
     FormComponent,
     AuthorsComponent,
     FooterComponent,
+    BookDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { FooterComponent } from './footer/footer.component';
     HotToastModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],
