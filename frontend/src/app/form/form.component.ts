@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BooksService } from '../books/books.service';
-import { Book } from '../models/books';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-form',
@@ -12,23 +12,28 @@ import { Book } from '../models/books';
 export class FormComponent implements OnInit {
   isUpdate = false;
   id;
+  successTemplate = 'Thêm thành công !';
+  errorTemplate = 'Không thể thêm, đã xảy ra lỗi !';
+
   bookForm = new FormGroup({
     title: new FormControl('', Validators.required),
     content: new FormControl('', Validators.required),
     author: new FormControl('', Validators.required),
     image: new FormControl(''),
   });
+
   constructor(
     private bookService: BooksService,
     private router: Router,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private toast: HotToastService
   ) {
     this.id = this.activeRoute.snapshot.paramMap.get('id');
-    this.isUpdate = this.id > 0;
+    if (this.id !== null) this.isUpdate = true;
   }
 
   ngOnInit(): void {
-    this.getBookDetail();
+    if (this.isUpdate) this.getBookDetail();
   }
 
   getBookDetail() {
@@ -38,9 +43,20 @@ export class FormComponent implements OnInit {
   }
   onSubmit(bookForm) {
     if (this.isUpdate) {
-      this.bookService.updateBook(this.id,bookForm).subscribe(() => {
-        this.router.navigateByUrl('/books');
-      });
+      this.successTemplate = 'Update thành công !';
+      this.errorTemplate = 'Không thể update, đã xảy ra lỗi !';
+      this.bookService
+        .updateBook(this.id, bookForm)
+        .pipe(
+          this.toast.observe({
+            loading: 'Saving...',
+            success: this.successTemplate,
+            error: this.errorTemplate,
+          })
+        )
+        .subscribe(() => {
+          this.router.navigateByUrl('/books');
+        });
     } else {
       this.bookService.addBook(bookForm).subscribe(() => {
         this.router.navigateByUrl('/books');

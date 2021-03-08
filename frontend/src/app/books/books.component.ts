@@ -10,6 +10,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 })
 export class BooksComponent implements OnInit {
   books: Book[] = [];
+  p: number = 1;
 
   constructor(
     private bookService: BooksService,
@@ -20,7 +21,7 @@ export class BooksComponent implements OnInit {
     this.fetchAll();
   }
   fetchAll() {
-    this.bookService.getBooks().subscribe((book) => (this.books = book) );
+    this.bookService.getBooks().subscribe((book) => (this.books = book));
 
   }
 
@@ -34,7 +35,7 @@ export class BooksComponent implements OnInit {
         error: errorTemplate,
       }
     )).subscribe(() => {
-      this.books = this.books.filter((book) => book.id !== id);
+      this.books = this.books.filter((book) => book._id !== id);
     });
   }
 }

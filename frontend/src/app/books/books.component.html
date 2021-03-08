@@ -1,7 +1,11 @@
 <div class="books">
+  <div class="books_search"></div>
   <h2 class="books__title">New Books</h2>
   <div class="row">
-    <div class="books__grid" *ngFor="let book of books">
+    <div
+      class="books__grid"
+      *ngFor="let book of books | paginate: { itemsPerPage: 4, currentPage: p }"
+    >
       <div class="content">
         <img src="{{ book.image }}" alt="hinhanh" />
         <div class="content__inner">
@@ -12,17 +16,18 @@
         <div class="menu-mini">
           <button
             mat-icon-button
-            [matMenuTriggerFor]="menu"
+            [matMenuTriggerFor]="menu"  
             aria-label="Example icon-button with a menu"
+            class="menu-mini__icon"
           >
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu" xPosition="before">
-            <button mat-menu-item [routerLink]="['/update', book.id]">
+            <button mat-menu-item [routerLink]="['/update', book._id]">
               <mat-icon>change_circle</mat-icon>
               <span>Edit</span>
             </button>
-            <button mat-menu-item (click)="delBook(book.id)">
+            <button mat-menu-item (click)="delBook(book._id)">
               <mat-icon>clear</mat-icon>
               <span>Delete</span>
             </button>
@@ -30,5 +35,11 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="pagination">
+    <pagination-controls
+      (pageChange)="p = $event"
+      responsive="true"
+    ></pagination-controls>
   </div>
 </div>

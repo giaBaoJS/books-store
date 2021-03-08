@@ -9,11 +9,13 @@ import { AuthorsComponent } from './authors/authors.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HotToastModule } from '@ngneat/hot-toast';
-
-import { MaterialModule } from './module/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { MaterialModule } from './module/material/material.module';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { HotToastModule } from '@ngneat/hot-toast';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BooksComponent,
     FormComponent,
     AuthorsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HotToastModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent],
