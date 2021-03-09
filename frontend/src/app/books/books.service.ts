@@ -11,7 +11,11 @@ export class BooksService {
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>('http://localhost:5000/posts');
   }
-
+  getBookByAuthor(authorName: string) {
+    return this.http.get<Book[]>(
+      'http://localhost:5000/posts?author=' + authorName
+    );
+  }
   addBook(bookData: Book) {
     return this.http.post('http://localhost:5000/posts', bookData);
   }

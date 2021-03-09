@@ -1,7 +1,7 @@
 <div class="form-group">
   <h3>{{ isUpdate ? "Update Book" : "Add Book" }}</h3>
   <form [formGroup]="bookForm" (ngSubmit)="onSubmit(bookForm.value)">
-    <mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
       <mat-label>Title</mat-label>
       <input
         matInput
@@ -9,13 +9,18 @@
         required
         formControlName="title"
       />
-      <mat-error *ngIf=""></mat-error>
-    </mat-form-field>
-    <mat-form-field>
+      <mat-error *ngIf="bookForm.controls.title.touched && bookForm.controls.title.invalid">
+        <span *ngIf="bookForm.controls.title.errors.required">Title is required.</span>
+      </mat-error>   
+     </mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
       <mat-label>Content</mat-label>
       <textarea matInput required formControlName="content"></textarea>
+      <mat-error *ngIf="bookForm.controls.content.touched && bookForm.controls.content.invalid">
+        <span *ngIf="bookForm.controls.content.errors.required">Content is required.</span>
+      </mat-error>  
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
       <mat-label>Author</mat-label>
       <input
         matInput
@@ -23,13 +28,16 @@
         required
         formControlName="author"
       />
-    </mat-form-field>
-    <mat-form-field>
+      <mat-error *ngIf="bookForm.controls.author.touched && bookForm.controls.author.invalid">
+        <span *ngIf="bookForm.controls.author.errors.required">Author is required.</span>
+      </mat-error>  
+    </mat-form-field >
+    <mat-form-field class="form-field" appearance="outline">
       <mat-label>Image</mat-label>
       <input matInput placeholder="Image" formControlName="image" />
     </mat-form-field>
     <div class="form__button">
-      <button mat-raised-button color="primary" type="submit">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!bookForm.valid">
         {{ isUpdate ? "Update" : "Submit" }}
       </button>
     </div>

@@ -2,13 +2,25 @@ import Post from "../model/post.js";
 import mongoose from "mongoose";
 
 export const getPosts = async (req, res) => {
-  try {
-    const postMessage = await Post.find({}).sort({createdAt : "desc"}).exec();
-    res.status(200).json(postMessage);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
+  const author = req.query.author;
+  if (author) {
+    try {
+      const postMessage = await Post.find({ author: author });
+      res.status(200).json(postMessage);
+    } catch (error) {
+      res.status(404).json({ message: error.message });
+    }
+  } else {
+    try {
+      const postMessage = await Post.find({})
+        .sort({ createdAt: "desc" })
+        .exec();
+      res.status(200).json(postMessage);
+    } catch (error) {
+      res.status(404).json({ message: error.message });
+    }
   }
-};  
+};
 
 export const createPosts = async (req, res) => {
   const post = req.body;

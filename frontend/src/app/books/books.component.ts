@@ -3,6 +3,7 @@ import { Book } from '../models/books';
 import { BooksService } from './books.service';
 import { HotToastService } from '@ngneat/hot-toast';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-books',
@@ -13,16 +14,29 @@ export class BooksComponent implements OnInit {
   isLoading = false;
   books: Book[] = [];
   p: number = 1;
-
+  authorName: string;
   constructor(
     private bookService: BooksService,
     private toast: HotToastService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private activeRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.authorName = this.activeRoute.snapshot.queryParamMap.get('author');
+    if (this.authorName) {
+      this.fetchBookByAuthor();
+    } else {
+      this.fetchAll();
+    }
     this.spinner.show();
-    this.fetchAll();
+  }
+
+  fetchBookByAuthor() {
+    this.bookService.getBookByAuthor(this.authorName).subscribe((book) => {
+      this.books = book;
+      this.spinner.hide();
+    });
   }
   fetchAll() {
     this.bookService.getBooks().subscribe((book) => {

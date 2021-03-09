@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Author } from '../models/author';
-
+import { Book } from '../models/books';
 @Injectable({
   providedIn: 'root',
 })
-export class authorsService {
+export class AuthorService {
   constructor(private http: HttpClient) {}
 
+  login(userData: { email: string; password: string }) {
+    return this.http.post('http://localhost:5000/users/login', userData);
+  }
 }

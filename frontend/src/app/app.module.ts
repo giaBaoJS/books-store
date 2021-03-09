@@ -18,6 +18,8 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import { FooterComponent } from './footer/footer.component';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AuthorsComponent,
     FooterComponent,
     BookDetailComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

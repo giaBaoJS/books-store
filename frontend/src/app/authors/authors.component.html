@@ -1,1 +1,14 @@
-<p>authors works!</p>
+<div class="authors">
+    <ngx-spinner
+    [fullScreen]="false"
+    type="ball-clip-rotate-multiple"
+    size="large"
+  >
+    <p class="loading">Loading .....</p>
+  </ngx-spinner>
+    <h1>List of Author</h1>
+    <div class="author" *ngFor="let author of authors">
+        <mat-icon>people</mat-icon>
+        <h2 (click)="fetchDataByName(author.author)">{{author.author}}</h2>
+    </div>
+</div>
