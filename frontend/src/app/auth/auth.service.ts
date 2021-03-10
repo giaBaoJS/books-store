@@ -11,4 +11,13 @@ export class AuthorService {
   login(userData: { email: string; password: string }) {
     return this.http.post('http://localhost:5000/users/login', userData);
   }
+
+  register(userData: {
+    email: string;
+    password: string;
+    confirmPassword: string;
+    name: string;
+  }){
+    return this.http.post('http://localhost:5000/users/register', userData);
+  }
 }

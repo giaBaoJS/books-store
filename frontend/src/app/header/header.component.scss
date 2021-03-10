@@ -2,7 +2,14 @@
     display: flex;
     justify-content: space-between;
 }
+.group-bar{
+    display: flex;
+    align-items: center;
+    &__user{
+        font-size: 18px;
+    }
+}
 a{
-    padding-left: 20px;
+    padding: 0 15px;
     color: white;
 }

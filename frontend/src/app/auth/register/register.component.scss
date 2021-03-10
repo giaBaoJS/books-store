@@ -1,0 +1,35 @@
+.login{
+    margin-top: 50px;
+    &__title{
+        text-align: center;
+        font-size: 40px;
+    }
+}
+.example-container{
+    text-align: center
+}
+
+.form-container{
+    width: 400px; 
+    margin: 0px auto; 
+    margin-top: 40px
+}
+
+.form-field{
+    display: block
+}
+button{
+    width: 100%;
+}
+.mat-form-field{
+    margin-bottom: 10px;
+}
+.have-account{
+    margin-top: 20px;
+    display: block;
+    color: #2585e8;
+    cursor: pointer;
+    &:hover{
+        text-decoration: underline;
+    }
+}

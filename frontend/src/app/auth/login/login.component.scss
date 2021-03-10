@@ -24,3 +24,12 @@ button{
 .mat-form-field{
     margin-bottom: 10px;
 }
+.have-account{
+    margin-top: 20px;
+    display: block;
+    color: #2585e8;
+    cursor: pointer;
+    &:hover{
+        text-decoration: underline;
+    }
+}

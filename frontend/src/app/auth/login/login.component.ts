@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HotToastService } from '@ngneat/hot-toast';
+
 import { AuthorService } from '../auth.service';
 import { Router } from '@angular/router';
 
@@ -11,11 +13,12 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   emailRegx = /^(([^<>+()\[\]\\.,;:\s@"-#$%&=]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
-  errors="";
+  errors = '';
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthorService
+    private authService: AuthorService,
+    private toast: HotToastService
   ) {}
 
   ngOnInit() {
@@ -25,14 +28,26 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(loginData) {
-    this.authService.login(loginData).subscribe(
-      (data) => {
-        console.log(data);
-        localStorage.setItem('profile',JSON.stringify({...data}))
-        this.router.navigateByUrl('/books');
-      },
-      (err) => this.errors = err.error.message
-    );    
+  onSubmit(loginData: { email: string; password: string }) {
+    if (this.loginForm.invalid) {
+      return;
+    } else {
+      this.authService
+        .login(loginData)
+        .pipe(
+          this.toast.observe({
+            loading: 'Pending...',
+            success: 'Login Success',
+            error: this.errors,
+          })
+        )
+        .subscribe(
+          (data) => {
+            localStorage.setItem('profile', JSON.stringify({ ...data }));
+            this.router.navigateByUrl('/books');
+          },
+          (err) => (this.errors = err.error.message)
+        );
+    }
   }
 }
