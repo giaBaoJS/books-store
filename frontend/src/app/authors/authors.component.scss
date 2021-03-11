@@ -1,11 +1,23 @@
 .authors {
   margin-top: 50px;
+  &__header {
+    h1 {
+      font-size: 2rem;
+      font-weight: 500;
+      margin: 0;
+    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
   .author {
     cursor: pointer;
-    margin-bottom: 30px;
+    padding: 15px 0;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: space-between;
     border-bottom: 1px solid black;
     h2 {
       margin: 0;
@@ -14,6 +26,19 @@
     &:hover {
       color: #3f51b5;
       transition: 0.5s all;
+    }
+  }
+  .author__action,
+  .author__icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .author__action {
+    .action-btn {
+      &:not(:last-child) {
+        padding-right: 15px;
+      }
     }
   }
 }

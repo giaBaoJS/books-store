@@ -1,14 +1,32 @@
 <div class="authors">
-    <ngx-spinner
+  <ngx-spinner
     [fullScreen]="false"
     type="ball-clip-rotate-multiple"
     size="large"
   >
     <p class="loading">Loading .....</p>
   </ngx-spinner>
+  <div class="authors__header">
     <h1>List of Author</h1>
-    <div class="author" *ngFor="let author of authors">
-        <mat-icon>people</mat-icon>
-        <h2 (click)="fetchDataByName(author.author)">{{author.author}}</h2>
+    <a mat-flat-button color="accent" routerLink="add">ADD +</a>
+  </div>
+
+  <div class="author" *ngFor="let author of authors">
+    <div class="author__icon">
+      <mat-icon>people</mat-icon>
+      <h2 (click)="fetchDataByName(author._id)">{{ author.name }}</h2>
     </div>
+    <div class="author__action">
+      <div class="action-btn">
+        <button mat-mini-fab color="primary" [routerLink]="['update', author._id]">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+      <div class="action-btn">
+        <button mat-mini-fab color="warn" (click)="onDelete(author._id)">
+          <mat-icon>delete_sweep</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

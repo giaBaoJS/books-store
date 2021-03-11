@@ -1,10 +1,13 @@
 import mongoose from "mongoose";
 
 const postSchema = mongoose.Schema({
-  title: String,
+  title: {
+    type: String,
+    unique: true,
+  },
   content: String,
-  author: String,
   image: String,
+  authorId: String,
   createdAt: {
     type: Date,
     default: new Date(),

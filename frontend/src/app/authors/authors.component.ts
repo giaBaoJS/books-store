@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BooksService } from '../books/books.service';
+import { HotToastService } from '@ngneat/hot-toast';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthorsService } from './authors.service';
+import { Author } from '../models/author';
 
 @Component({
   selector: 'app-authors',
@@ -10,22 +13,36 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AuthorsComponent implements OnInit {
   constructor(
-    private bookService: BooksService,
+    private authorService: AuthorsService,
     private router: Router,
+    private toast: HotToastService,
     private spinner: NgxSpinnerService
   ) {}
 
-  authors = null;
+  authors: Author[] = [];
   ngOnInit(): void {
     this.spinner.show();
     this.fetchAuthors();
   }
   fetchAuthors() {
-    this.bookService.getBooks().subscribe((author) => {
+    this.authorService.getAuthors().subscribe((author) => {
       (this.authors = author), this.spinner.hide();
     });
   }
-  fetchDataByName(nameAuthor: string) {
-    this.router.navigate(['/books'], { queryParams: { author: nameAuthor } });
+  fetchDataByName(idAuthor: string) {
+    // this.router.navigate(['/books'], { queryParams: { author: nameAuthor } });
+    console.log(idAuthor);
+  }
+  onDelete(id: string) {
+    console.log(id);
+    this.authorService.deleteAuthor(id).pipe(
+      this.toast.observe({
+        loading: 'Saving...',
+        success: 'Delete Author Success',
+        error: 'Something has wrong',
+      })
+    ).subscribe(() => {
+      this.authors = this.authors.filter((author) => author._id !== id);
+    });
   }
 }

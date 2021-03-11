@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/models/books';
 import { Location } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
-
-
+import { Author } from '../../models/author';
+import { AuthorsService } from '../../authors/authors.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -15,12 +15,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class BookDetailComponent implements OnInit {
   id: string;
   book: Book;
+  author: Author;
   constructor(
     private bookService: BooksService,
     private activeRoute: ActivatedRoute,
     private location: Location,
-    private spinner: NgxSpinnerService
-
+    private spinner: NgxSpinnerService,
+    private authorService: AuthorsService
   ) {
     this.id = this.activeRoute.snapshot.paramMap.get('id');
   }
@@ -34,6 +35,9 @@ export class BookDetailComponent implements OnInit {
     this.bookService.getBookDetail(this.id).subscribe((value) => {
       this.book = value;
       this.spinner.hide();
+      this.authorService
+        .getAuthorDetail(this.book.authorId)
+        .subscribe((author) => (this.author = author));
     });
   }
   goBack(): void {

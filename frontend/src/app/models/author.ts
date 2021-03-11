@@ -1,4 +1,7 @@
 export interface Author {
-  id: number;
+  _id?: string;
   name: string;
+  dob: Date;
+  nationality: string;
+  story: string;
 }

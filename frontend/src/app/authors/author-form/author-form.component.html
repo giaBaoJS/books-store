@@ -1,0 +1,76 @@
+<div class="login">
+  <h2 class="login__title">{{ isUpdate ? "Update" : "New" }} Author</h2>
+  <div class="example-container">
+    <div class="form-container">
+      <form [formGroup]="authorForm" (ngSubmit)="onSubmit(authorForm.value)">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Full Name</mat-label>
+          <input matInput formControlName="name" required type="text" />
+          <mat-error
+            *ngIf="
+              authorForm.controls.name.touched &&
+              authorForm.controls.name.invalid
+            "
+          >
+            <span *ngIf="authorForm.controls.name.errors.required"
+              >Name is required.</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Date Of Birth </mat-label>
+          <input
+            matInput
+            formControlName="dob"
+            required
+            [matDatepicker]="picker"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="
+              authorForm.controls.dob.touched && authorForm.controls.dob.invalid
+            "
+          >
+            <span *ngIf="authorForm.controls.dob.errors.required"
+              >Date of Birth is required.</span
+            >
+          </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Nationality </mat-label>
+          <input matInput formControlName="nationality" type="text" required />
+          <mat-error
+            *ngIf="
+              authorForm.controls.nationality.touched &&
+              authorForm.controls.nationality.invalid
+            "
+          >
+            <span *ngIf="authorForm.controls.nationality.errors.required"
+              >Nationality is required.</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Story </mat-label>
+          <textarea matInput formControlName="story" required> </textarea>
+          <mat-error
+            *ngIf="
+              authorForm.controls.story.touched &&
+              authorForm.controls.story.invalid
+            "
+          >
+            <span *ngIf="authorForm.controls.story.errors.required"
+              >Story is required</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">{{ isUpdate ? "Update" : "Submit" }}</button>
+      </form>
+    </div>
+  </div>
+</div>

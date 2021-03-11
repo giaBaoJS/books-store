@@ -2,7 +2,7 @@
   <div class="books__search"></div>
   <div class="books__bar">
     <h2 class="books__title">New Books</h2>
-    <a mat-flat-button color="accent" routerLink="/add">ADD +</a>
+    <a mat-flat-button color="accent" routerLink="add">ADD +</a>
   </div>
   <div class="row">
     <ngx-spinner
@@ -23,7 +23,9 @@
             book.title
           }}</a>
           <p class="description">{{ book.content }}</p>
-          <a class="author">{{ book.author }}</a>
+          <a class="author" *ngFor="let author of authors">{{
+            author._id === book.authorId ? author.name : ""
+          }}</a>
         </div>
         <div class="menu-mini">
           <button
@@ -35,7 +37,7 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu" xPosition="before">
-            <button mat-menu-item [routerLink]="['/update', book._id]">
+            <button mat-menu-item [routerLink]="['update', book._id]">
               <mat-icon>change_circle</mat-icon>
               <span>Edit</span>
             </button>

@@ -9,6 +9,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const MaterialComponents = [
   MatFormFieldModule,
@@ -21,6 +24,9 @@ const MaterialComponents = [
   MatMenuModule,
   MatSidenavModule,
   MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatAutocompleteModule,
 ];
 
 @NgModule({

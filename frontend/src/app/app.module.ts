@@ -20,6 +20,8 @@ import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AuthorFormComponent } from './authors/author-form/author-form.component';
+import { AuthorDetailComponent } from './authors/author-detail/author-detail.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { RegisterComponent } from './auth/register/register.component';
     BookDetailComponent,
     LoginComponent,
     RegisterComponent,
+    AuthorFormComponent,
+    AuthorDetailComponent,
   ],
   imports: [
     BrowserModule,
