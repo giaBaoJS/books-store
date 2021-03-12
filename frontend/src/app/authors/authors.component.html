@@ -14,11 +14,15 @@
   <div class="author" *ngFor="let author of authors">
     <div class="author__icon">
       <mat-icon>people</mat-icon>
-      <h2 (click)="fetchDataByName(author._id)">{{ author.name }}</h2>
+      <a routerLink="/authors/detail/{{ author._id }}">{{ author.name }}</a>
     </div>
     <div class="author__action">
       <div class="action-btn">
-        <button mat-mini-fab color="primary" [routerLink]="['update', author._id]">
+        <button
+          mat-mini-fab
+          color="primary"
+          [routerLink]="['update', author._id]"
+        >
           <mat-icon>edit</mat-icon>
         </button>
       </div>

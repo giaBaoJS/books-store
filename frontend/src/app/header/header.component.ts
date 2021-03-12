@@ -12,12 +12,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('profile'));
-    if (this.user.token) {
+    if (this.user?.token) {
       this.token = true;
     }
   }
   logOut() {
     localStorage.removeItem('profile');
   }
-  
 }

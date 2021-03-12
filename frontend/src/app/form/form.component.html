@@ -27,16 +27,16 @@
         matInput
         placeholder="Author name"
         required
-        formControlName="author"
+        formControlName="authorId"
         [matAutocomplete]="auto"
       />
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="getOptionText">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option}}
+          {{option.name}}
         </mat-option>
       </mat-autocomplete>
-      <mat-error *ngIf="bookForm.controls.author.touched && bookForm.controls.author.invalid">
-        <span *ngIf="bookForm.controls.author.errors.required">Author is required.</span>
+      <mat-error *ngIf="bookForm.controls.authorId.touched && bookForm.controls.authorId.invalid">
+        <span *ngIf="bookForm.controls.authorId.errors.required">Author is required.</span>
       </mat-error>  
     </mat-form-field >
     <mat-form-field class="form-field" appearance="outline">

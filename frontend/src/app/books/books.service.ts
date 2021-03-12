@@ -11,9 +11,9 @@ export class BooksService {
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>('http://localhost:5000/posts');
   }
-  getBookByAuthor(authorName: string) {
+  getBookByAuthor(authorId: string) {
     return this.http.get<Book[]>(
-      'http://localhost:5000/posts?author=' + authorName
+      'http://localhost:5000/posts?authorId=' + authorId
     );
   }
   addBook(bookData: Book) {

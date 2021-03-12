@@ -6,7 +6,12 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute } from '@angular/router';
 import { Author } from '../models/author';
-
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+} from 'swiper/core'
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
@@ -57,5 +62,13 @@ export class BooksComponent implements OnInit {
       .subscribe(() => {
         this.books = this.books.filter((book) => book._id !== id);
       });
+  }
+
+
+  onSwiper(swiper) {
+    console.log(swiper);
+  }
+  onSlideChange() {
+    console.log('slide change');
   }
 }

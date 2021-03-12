@@ -16,15 +16,15 @@ import { Author } from '../models/author';
 export class FormComponent implements OnInit {
   isUpdate = false;
   id: string;
-  successTemplate = 'Thêm thành công !';
-  errorTemplate = 'Không thể thêm, đã xảy ra lỗi !';
-  options: string[] = [];
+  successTemplate = 'Add Book Success !';
+  errorTemplate = "Can't add , something has wrong !";
+  options: object[] = [];
   filteredOptions: Observable<string[]>;
 
   bookForm = new FormGroup({
     title: new FormControl('', Validators.required),
     content: new FormControl('', Validators.required),
-    author: new FormControl('', Validators.required),
+    authorId: new FormControl('', Validators.required),
     image: new FormControl(''),
   });
 
@@ -39,27 +39,34 @@ export class FormComponent implements OnInit {
     if (this.id !== null) this.isUpdate = true;
   }
 
-  ngOnInit(): void {
-    if (this.isUpdate) this.getBookDetail();
-    this.fetchAuthors();
+  async ngOnInit() {
+    if (this.isUpdate) {
+      this.getBookDetail();
+    }
+
+    const names = await this.fetchAuthors().toPromise();
+    this.options.push(...names);
+    console.log(this.options)
     this.onValuechanged();
   }
 
   onValuechanged() {
-    this.filteredOptions = this.bookForm.controls.author.valueChanges.pipe(
+    this.filteredOptions = this.bookForm.controls.authorId.valueChanges.pipe(
       startWith(''),
       map((value: any) => this._filter(value))
     );
   }
   fetchAuthors() {
-    this.authorService
-      .getAuthors()
-      .pipe(
-        map((authors: Author[]) =>
-          authors.map((author) => this.options.push(author.name))
-        )
+    return this.authorService.getAuthors().pipe(
+      map((authors: Author[]) =>
+        authors.map((author) => {
+          return {
+            name: author.name,
+            _id: author._id,
+          };
+        })
       )
-      .subscribe();
+    );
   }
   // fetchAuthors() {
   //   const exmample = this.authorService.getAuthors().pipe(
@@ -79,8 +86,8 @@ export class FormComponent implements OnInit {
   }
   onSubmit(bookForm) {
     if (this.isUpdate) {
-      this.successTemplate = 'Update thành công !';
-      this.errorTemplate = 'Không thể update, đã xảy ra lỗi !';
+      this.successTemplate = 'Update successfuly !';
+      this.errorTemplate = "Can't update, something has wrong !";
       this.bookService
         .updateBook(this.id, bookForm)
         .pipe(
@@ -109,5 +116,8 @@ export class FormComponent implements OnInit {
     return this.options.filter(
       (option) => option.toLowerCase().indexOf(filterValue) === 0
     );
+  }
+  getOptionText(option) {
+    
   }
 }

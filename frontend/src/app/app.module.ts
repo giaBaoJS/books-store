@@ -22,6 +22,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthorFormComponent } from './authors/author-form/author-form.component';
 import { AuthorDetailComponent } from './authors/author-detail/author-detail.component';
+import { SwiperModule } from 'swiper/angular';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { AuthorDetailComponent } from './authors/author-detail/author-detail.com
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    SwiperModule
   ],
   providers: [],
   bootstrap: [AppComponent],

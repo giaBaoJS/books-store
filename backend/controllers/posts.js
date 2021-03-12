@@ -2,10 +2,10 @@ import Post from "../model/post.js";
 import mongoose from "mongoose";
 
 export const getPosts = async (req, res) => {
-  const author = req.query.author;
-  if (author) {
+  const authorId = req.query.authorId;
+  if (authorId) {
     try {
-      const postMessage = await Post.find({ author: author });
+      const postMessage = await Post.find({ authorId: authorId });
       res.status(200).json(postMessage);
     } catch (error) {
       res.status(404).json({ message: error.message });
@@ -22,6 +22,15 @@ export const getPosts = async (req, res) => {
   }
 };
 
+export const getPostsByAuthor = async (req, res) => {
+  const authorId = req.query.author;
+  try {
+    const postMessage = await Post.find({ authorId: authorId });
+    res.status(200).json(postMessage);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
 export const createPosts = async (req, res) => {
   const post = req.body;
 

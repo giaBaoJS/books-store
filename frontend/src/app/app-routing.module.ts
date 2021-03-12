@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AuthorDetailComponent } from './authors/author-detail/author-detail.component';
 import { AuthorFormComponent } from './authors/author-form/author-form.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'books/add', component: FormComponent },
   { path: 'books/update/:id', component: FormComponent },
   { path: 'authors', component: AuthorsComponent },
-  { path: 'authors/add', component: AuthorFormComponent},
+  { path: 'authors/detail/:id', component: AuthorDetailComponent },
+  { path: 'authors/add', component: AuthorFormComponent },
   { path: 'authors/update/:id', component: AuthorFormComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
