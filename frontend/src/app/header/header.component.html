@@ -1,15 +1,18 @@
 <mat-toolbar color="primary">
-  <a routerLink="/">
-     BookStore
-    </a>
+  <div class="hamburger">
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <a routerLink="/" class="logo"> BookStore </a>
   <div class="group-bar">
-    <a routerLink="/books"> 
-        <mat-icon>library_books</mat-icon>
-        Books
+    <a routerLink="/books">
+      <mat-icon>library_books</mat-icon>
+      Books
     </a>
     <a routerLink="/authors">
-        <mat-icon>people</mat-icon>
-        Author
+      <mat-icon>people</mat-icon>
+      Author
     </a>
   </div>
   <div *ngIf="token">
@@ -18,10 +21,10 @@
       [matMenuTriggerFor]="menu"
       class="group-bar__user"
     >
-      <mat-icon style="margin-right: 10px;">account_circle</mat-icon>
+      <mat-icon style="margin-right: 10px">account_circle</mat-icon>
       <span> {{ user.result.name }}</span>
     </button>
-    <mat-menu #menu="matMenu" >
+    <mat-menu #menu="matMenu">
       <button mat-menu-item>
         <mat-icon color="primary">info</mat-icon>
         <span>Information</span>
@@ -33,9 +36,9 @@
     </mat-menu>
   </div>
   <div *ngIf="!token">
-    <a routerLink="/login" style="display: flex; align-items: center;">
-        <mat-icon style="margin-right: 5px;">account_circle</mat-icon>
-        Account
+    <a routerLink="/login" style="display: flex; align-items: center">
+      <mat-icon style="margin-right: 5px">account_circle</mat-icon>
+      Account
     </a>
   </div>
 </mat-toolbar>

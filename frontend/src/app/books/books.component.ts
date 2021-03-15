@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Swiper } from 'swiper';
 import { Book } from '../models/books';
 import { BooksService } from './books.service';
 import { AuthorsService } from '../authors/authors.service';
@@ -6,22 +7,20 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute } from '@angular/router';
 import { Author } from '../models/author';
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-} from 'swiper/core'
+// import SwiperCore, { Pagination, Scrollbar, A11y } from 'swiper/core';
+// SwiperCore.use([Pagination, Scrollbar, A11y]);
+
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.scss'],
 })
-export class BooksComponent implements OnInit {
+export class BooksComponent implements OnInit, AfterViewInit {
   isLoading = false;
   books: Book[] = [];
   p: number = 1;
   authors: Author[] = [];
+  mySwiper: Swiper;
   constructor(
     private bookService: BooksService,
     private toast: HotToastService,
@@ -34,6 +33,35 @@ export class BooksComponent implements OnInit {
     this.fetchAll();
     this.fetchAllAuthor();
     this.spinner.show();
+  }
+  ngAfterViewInit() {
+    this.mySwiper = new Swiper('.swiper-container', {
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true,
+      },
+      observer:true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      spaceBetween: 30,
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+        1040: {
+          slidesPerView: 4,
+          spaceBetween: 30,
+        },
+      },
+    });
   }
   fetchAllAuthor() {
     this.authorService.getAuthors().subscribe((author) => {
@@ -64,11 +92,10 @@ export class BooksComponent implements OnInit {
       });
   }
 
-
-  onSwiper(swiper) {
-    console.log(swiper);
-  }
-  onSlideChange() {
-    console.log('slide change');
-  }
+  // onSwiper(swiper) {
+  //   console.log(swiper);
+  // }
+  // onSlideChange() {
+  //   console.log('slide change');
+  // }
 }

@@ -28,27 +28,7 @@
             }}</a>
             <p class="description">{{ book.content }}</p>
             <a class="author">{{ author.name }}</a>
-          </div>
-          <div class="menu-mini">
-            <button
-              mat-icon-button
-              [matMenuTriggerFor]="menu"
-              aria-label="Example icon-button with a menu"
-              class="menu-mini__icon"
-            >
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item [routerLink]="['update', book._id]">
-                <mat-icon>change_circle</mat-icon>
-                <span>Edit</span>
-              </button>
-              <button mat-menu-item>
-                <mat-icon>clear</mat-icon>
-                <span>Delete</span>
-              </button>
-            </mat-menu>
-          </div>
+          </div>  
         </div>
       </div>
     </div>

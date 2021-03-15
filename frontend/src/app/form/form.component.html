@@ -30,8 +30,8 @@
         formControlName="authorId"
         [matAutocomplete]="auto"
       />
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="getOptionText">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" >
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option._id">
           {{option.name}}
         </mat-option>
       </mat-autocomplete>

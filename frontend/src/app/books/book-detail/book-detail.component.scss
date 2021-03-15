@@ -1,5 +1,6 @@
 .book-detail {
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 .col-left {
   width: calc(100% / 12 * 5);
@@ -12,4 +13,13 @@
 .col-right {
   width: calc(100% /12 * 7);
   padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  .content{
+    flex-grow: 1;
+  }
+}
+.btn-detail{
+  width: 100px;
+  margin-left: auto;
 }

@@ -8,6 +8,11 @@ import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Author } from '../models/author';
 
+interface Option {
+  _id: string;
+  name: string;
+}
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -18,8 +23,8 @@ export class FormComponent implements OnInit {
   id: string;
   successTemplate = 'Add Book Success !';
   errorTemplate = "Can't add , something has wrong !";
-  options: object[] = [];
-  filteredOptions: Observable<string[]>;
+  options: Option[] = [];
+  filteredOptions: Observable<object[]>;
 
   bookForm = new FormGroup({
     title: new FormControl('', Validators.required),
@@ -46,7 +51,6 @@ export class FormComponent implements OnInit {
 
     const names = await this.fetchAuthors().toPromise();
     this.options.push(...names);
-    console.log(this.options)
     this.onValuechanged();
   }
 
@@ -110,14 +114,14 @@ export class FormComponent implements OnInit {
     this.bookForm.reset();
   }
 
-  private _filter(value: string): string[] {
+  private _filter(value: string): Option[] {
     const filterValue = value.toLowerCase();
 
     return this.options.filter(
-      (option) => option.toLowerCase().indexOf(filterValue) === 0
+      (option) =>
+        String(option._id).toLowerCase().indexOf(filterValue) > -1 ||
+        option.name.toLowerCase().indexOf(filterValue) > -1
     );
   }
-  getOptionText(option) {
-    
-  }
+  getOptionText(option) {}
 }

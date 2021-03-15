@@ -1,9 +1,4 @@
 <div class="books">
-  <div class="books__search"></div>
-  <div class="books__bar">
-    <h2 class="books__title">New Books</h2>
-    <a mat-flat-button color="accent" routerLink="add">ADD +</a>
-  </div>
   <ngx-spinner
     [fullScreen]="false"
     type="ball-clip-rotate-multiple"
@@ -12,100 +7,64 @@
     <p class="loading">Loading .....</p>
   </ngx-spinner>
 
-  <div class="row">
-    <swiper
-      [slidesPerView]="4"
-      [spaceBetween]="30"
-      (swiper)="onSwiper($event)"
-      (slideChange)="onSlideChange()"
-      [navigation]="true"
-      [pagination]="{ clickable: true }"
-    >
-      <ng-template
-        class="books__grid"
-        *ngFor="
-          let book of books | paginate: { itemsPerPage: 6, currentPage: p }
-        "
-        swiperSlide
-        >    <div class="content">
-          <img src="{{ book.image }}" alt="hinhanh" />
-          <div class="content__inner">
-            <a routerLink="/books/detail/{{ book._id }}" class="title">{{
-              book.title
-            }}</a>
-            <p class="description">{{ book.content }}</p>
-            <a
-              class="author"
-              routerLink="/authors/detail/{{ author._id }}"
-              *ngFor="let author of authors"
-              >{{ author._id === book.authorId ? author.name : "" }}</a
-            >
-          </div>
-          <div class="menu-mini">
-            <button
-              mat-icon-button
-              [matMenuTriggerFor]="menu"
-              aria-label="Example icon-button with a menu"
-              class="menu-mini__icon"
-            >
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item [routerLink]="['update', book._id]">
-                <mat-icon>change_circle</mat-icon>
-                <span>Edit</span>
-              </button>
-              <button mat-menu-item (click)="delBook(book._id)">
-                <mat-icon>clear</mat-icon>
-                <span>Delete</span>
-              </button>
-            </mat-menu>
-          </div>
-        </div></ng-template
-      >
-    </swiper>
+  <div class="books__search"></div>
+  <div class="books__component">
+    <div class="books__bar">
+      <h2 class="books__title">New Books</h2>
+      <a mat-flat-button color="accent" routerLink="add">ADD +</a>
+    </div>
 
-    <!-- <div
-      class="books__grid"
-      *ngFor="let book of books | paginate: { itemsPerPage: 4, currentPage: p }"
-    >
-      <div class="content">
-        <img src="{{ book.image }}" alt="hinhanh" />
-        <div class="content__inner">
-          <a routerLink="/books/detail/{{ book._id }}" class="title">{{
-            book.title
-          }}</a>
-          <p class="description">{{ book.content }}</p>
-          <a
-            class="author"
-            routerLink="/authors/detail/{{ author._id }}"
-            *ngFor="let author of authors"
-            >{{ author._id === book.authorId ? author.name : "" }}</a
-          >
+    <div class="">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" *ngFor="let book of books">
+            <div class="books__grid">
+              <div class="content">
+                <img src="{{ book.image }}" alt="hinhanh" />
+                <div class="content__inner">
+                  <a routerLink="/books/detail/{{ book._id }}" class="title">{{
+                    book.title
+                  }}</a>
+                  <p class="description">{{ book.content }}</p>
+                  <a
+                    class="author"
+                    routerLink="/authors/detail/{{ author._id }}"
+                    *ngFor="let author of authors"
+                    >{{ author._id === book.authorId ? author.name : "" }}</a
+                  >
+                </div>
+                <div class="menu-mini">
+                  <button
+                    mat-icon-button
+                    [matMenuTriggerFor]="menu"
+                    aria-label="Example icon-button with a menu"
+                    class="menu-mini__icon"
+                  >
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu" xPosition="before">
+                    <button mat-menu-item [routerLink]="['update', book._id]">
+                      <mat-icon>change_circle</mat-icon>
+                      <span>Edit</span>
+                    </button>
+                    <button mat-menu-item (click)="delBook(book._id)">
+                      <mat-icon>clear</mat-icon>
+                      <span>Delete</span>
+                    </button>
+                  </mat-menu>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="menu-mini">
-          <button
-            mat-icon-button
-            [matMenuTriggerFor]="menu"
-            aria-label="Example icon-button with a menu"
-            class="menu-mini__icon"
-          >
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu" xPosition="before">
-            <button mat-menu-item [routerLink]="['update', book._id]">
-              <mat-icon>change_circle</mat-icon>
-              <span>Edit</span>
-            </button>
-            <button mat-menu-item (click)="delBook(book._id)">
-              <mat-icon>clear</mat-icon>
-              <span>Delete</span>
-            </button>
-          </mat-menu>
-        </div>
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
       </div>
-    </div> -->
+    </div>
   </div>
+
   <!-- <div class="pagination">
     <pagination-controls
       (pageChange)="p = $event"

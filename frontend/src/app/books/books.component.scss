@@ -7,15 +7,25 @@
     margin-bottom: 30px;
 
   }
+  &__component{
+    margin-bottom: 50px;
+  }
   &__title {
     font-size: 35px;
   }
+  .swiper-slide{
+    height: auto;
+  }
   .row {
     .books__grid {
-      padding: 0 15px;
-      width: calc(100% / 4);
-      margin-bottom: 30px;
+      // padding: 0 15px;
+      // width: calc(100% / 4);
+      // margin-bottom: 30px;
+     
     }
+  }
+  .books__grid{
+    height: 100%;
   }
   .content {
     box-shadow: 6px 6px 16px 0 rgb(0 0 0 / 16%);

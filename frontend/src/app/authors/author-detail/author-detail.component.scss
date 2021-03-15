@@ -1,3 +1,5 @@
+@import "../../../styles.scss";
+
 .author-detail {
   margin-top: 50px;
   &__container {
@@ -8,6 +10,10 @@
   &__avatar {
     padding: 0 15px;
     width: calc(100% / 12 * 3);
+    @include media(765px) {
+      width: 100%;
+      margin-bottom: 20px;
+    }
     img {
       object-fit: cover;
       width: 100%;
@@ -21,6 +27,9 @@
     }
     padding: 0 15px;
     width: calc(100% / 12 * 9);
+    @include media(765px) {
+      width: 100%;
+    }
     p {
       font-size: 16px;
     }
@@ -31,6 +40,7 @@
       text-align: center;
       font-weight: 500;
       font-size: 24px;
+      margin-bottom: 40px;
     }
   }
 }
@@ -50,6 +60,12 @@
       padding: 0 15px;
       width: calc(100% / 4);
       margin-bottom: 30px;
+      @include media(768px) {
+        width: calc(100% / 3);
+      }
+      @include media(540px) {
+        width: 100%;
+      }
     }
   }
   .content {

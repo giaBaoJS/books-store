@@ -1,15 +1,30 @@
-.mat-toolbar{
-    display: flex;
-    justify-content: space-between;
+@import "../../styles.scss" ;
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between;
 }
-.group-bar{
-    display: flex;
-    align-items: center;
-    &__user{
-        font-size: 18px;
+.hamburger{
+    display: none;
+    @include media(768px){
+        display: block;
     }
 }
-a{
-    padding: 0 15px;
-    color: white;
+.logo{
+    @include media(768px){
+        display: none;
+    }
+}
+.group-bar {
+  display: flex;
+  align-items: center;
+  @include media(768px) {
+    display: none;
+  }
+  &__user {
+    font-size: 18px;
+  }
+}
+a {
+  padding: 0 15px;
+  color: white;
 }

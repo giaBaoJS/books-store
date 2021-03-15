@@ -1,0 +1,14 @@
+<mat-nav-list>
+  <div class="nav-list-logo">
+    <a routerLink="/">BookStore</a>
+  </div>
+  <div class="nav-list-items">
+    <a mat-list-item routerLink="/books" (click)="onSidenavClose()">
+      <mat-icon color="primary">home</mat-icon> <span class="nav-caption">Books</span>
+    </a>
+    <a mat-list-item routerLink="/authors" (click)="onSidenavClose()">
+      <mat-icon color="primary">assignment_ind</mat-icon>
+      <span class="nav-caption">Authors</span>
+    </a>
+  </div>
+</mat-nav-list>
