@@ -5,7 +5,7 @@ import { Book } from '../models/books';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthorService {
+export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(userData: { email: string; password: string }) {
@@ -17,7 +17,10 @@ export class AuthorService {
     password: string;
     confirmPassword: string;
     name: string;
-  }){
+  }) {
     return this.http.post('http://localhost:5000/users/register', userData);
+  }
+  getUser(userId: string) {
+    return this.http.get('http://localhost:5000/users/' + userId);
   }
 }

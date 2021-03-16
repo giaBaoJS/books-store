@@ -58,3 +58,13 @@ export const register = async (req, res) => {
     res.status(500).json({ message: "Something went wrong." });
   }
 };
+
+export const getUser = async (req, res) => {
+  const { id: _id } = req.params;
+  try {
+    const userDetail = await User.findById(_id);
+    res.status(200).json(userDetail);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};

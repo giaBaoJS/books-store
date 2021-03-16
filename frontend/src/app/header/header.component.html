@@ -12,7 +12,7 @@
     </a>
     <a routerLink="/authors">
       <mat-icon>people</mat-icon>
-      Author
+      Authors
     </a>
   </div>
   <div *ngIf="token">
@@ -25,10 +25,10 @@
       <span> {{ user.result.name }}</span>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
+      <a mat-menu-item routerLink="/user/{{ user.result._id }}">
         <mat-icon color="primary">info</mat-icon>
-        <span>Information</span>
-      </button>
+        <span style="color: #000">Information</span>
+      </a>
       <button mat-menu-item (click)="logOut()">
         <mat-icon color="warn">logout</mat-icon>
         <span>Log out</span>

@@ -8,6 +8,7 @@ import { AuthorsComponent } from './authors/authors.component';
 import { BookDetailComponent } from './books/book-detail/book-detail.component';
 import { BooksComponent } from './books/books.component';
 import { FormComponent } from './form/form.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/books', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'authors/update/:id', component: AuthorFormComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'user/:id', component: UserComponent },
 ];
 
 @NgModule({

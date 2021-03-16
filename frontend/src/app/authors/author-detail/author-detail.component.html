@@ -1,34 +1,34 @@
-<div class="author-detail">
+<div class="author-detail spacing">
   <div class="author-detail__container">
     <div class="row">
       <div class="author-detail__avatar">
         <img src="./assets/images/ichikawatakuji.jpg" alt="hinhanh" />
       </div>
       <div class="author-detail__info">
-        <h2>{{ author.name }}</h2>
-        <p><b>Date of Birth:</b> {{ author.dob | date: "mediumDate" }}</p>
-        <p><b>Country:</b> {{ author.nationality }}</p>
+        <h2>{{ author?.name }}</h2>
+        <p><b>Date of Birth:</b> {{ author?.dob | date: "mediumDate" }}</p>
+        <p><b>Country:</b> {{ author?.nationality }}</p>
 
         <p><b>Story:</b></p>
         <p>
-          {{ author.story }}
+          {{ author?.story }}
         </p>
       </div>
     </div>
   </div>
   <div class="author-detail__book books">
-    <h3 class="main-title">Book of IchiKawa Takuji</h3>
+    <h3 class="main-title">Book of <span>{{ author?.name }}</span></h3>
     <div class="row">
       <div class="books__grid" *ngFor="let book of books">
         <div class="content">
-          <img src="{{ book.image }}" alt="hinhanh" />
+          <img src="{{ book?.image }}" alt="hinhanh" />
           <div class="content__inner">
-            <a routerLink="/books/detail/{{ book._id }}" class="title">{{
+            <a routerLink="/books/detail/{{ book?._id }}" class="title">{{
               book.title
             }}</a>
-            <p class="description">{{ book.content }}</p>
-            <a class="author">{{ author.name }}</a>
-          </div>  
+            <p class="description">{{ book?.content }}</p>
+            <a class="author">{{ author?.name }}</a>
+          </div>
         </div>
       </div>
     </div>

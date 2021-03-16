@@ -24,6 +24,7 @@ import { AuthorFormComponent } from './authors/author-form/author-form.component
 import { AuthorDetailComponent } from './authors/author-detail/author-detail.component';
 import { SwiperModule } from 'swiper/angular';
 import { SidenavListComponent } from './header/sidenav-list/sidenav-list.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { SidenavListComponent } from './header/sidenav-list/sidenav-list.compone
     AuthorFormComponent,
     AuthorDetailComponent,
     SidenavListComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

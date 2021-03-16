@@ -1,0 +1,12 @@
+<div class="spacing user">
+  <div class="content">
+    <img src="https://picsum.photos/id/237/300/300" alt="img" />
+    <button mat-raised-button color="primary" class="user__btn">Edit</button>
+    <h2 class="user__name">{{ user?.name }}</h2>
+    <ul>
+      <li><b>Email:</b> {{ user?.email }}</li>
+      <li><b>Join date:</b> {{ user?.date | date }}</li>
+      <li><b>Role:</b> {{ user?.role }}</li>
+    </ul>
+  </div>
+</div>

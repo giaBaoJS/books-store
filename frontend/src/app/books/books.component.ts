@@ -41,7 +41,7 @@ export class BooksComponent implements OnInit, AfterViewInit {
         type: 'bullets',
         clickable: true,
       },
-      observer:true,
+      observer: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -50,7 +50,7 @@ export class BooksComponent implements OnInit, AfterViewInit {
       breakpoints: {
         320: {
           slidesPerView: 1,
-          spaceBetween: 20,
+          spaceBetween: 15,
         },
         768: {
           slidesPerView: 3,
