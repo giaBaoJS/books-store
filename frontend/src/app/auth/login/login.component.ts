@@ -44,7 +44,9 @@ export class LoginComponent implements OnInit {
         .subscribe(
           (data) => {
             localStorage.setItem('profile', JSON.stringify({ ...data }));
-            this.router.navigateByUrl('/books');
+            this.router.navigateByUrl('/books').then(() => {
+              window.location.reload();
+            });
           },
           (err) => (this.errors = err.error.message)
         );

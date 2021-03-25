@@ -12,6 +12,11 @@ import { Author } from '../models/author';
   styleUrls: ['./authors.component.scss'],
 })
 export class AuthorsComponent implements OnInit {
+  user;
+  isAdmin = false;
+
+  authors: Author[] = [];
+
   constructor(
     private authorService: AuthorsService,
     private router: Router,
@@ -19,8 +24,11 @@ export class AuthorsComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) {}
 
-  authors: Author[] = [];
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('profile'));
+    if (this.user?.result.role === 'admin') {
+      this.isAdmin = true;
+    }
     this.spinner.show();
     this.fetchAuthors();
   }
@@ -35,14 +43,17 @@ export class AuthorsComponent implements OnInit {
   }
   onDelete(id: string) {
     console.log(id);
-    this.authorService.deleteAuthor(id).pipe(
-      this.toast.observe({
-        loading: 'Saving...',
-        success: 'Delete Author Success',
-        error: 'Something has wrong',
-      })
-    ).subscribe(() => {
-      this.authors = this.authors.filter((author) => author._id !== id);
-    });
+    this.authorService
+      .deleteAuthor(id)
+      .pipe(
+        this.toast.observe({
+          loading: 'Saving...',
+          success: 'Delete Author Success',
+          error: 'Something has wrong',
+        })
+      )
+      .subscribe(() => {
+        this.authors = this.authors.filter((author) => author._id !== id);
+      });
   }
 }

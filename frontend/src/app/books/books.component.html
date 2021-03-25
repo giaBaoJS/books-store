@@ -13,10 +13,10 @@
       <h2 class="books__title">
         New <span style="color: #3f51b5">Books</span>
       </h2>
-      <a mat-flat-button color="accent" routerLink="add">ADD +</a>
+      <a mat-flat-button color="accent" routerLink="add" *ngIf="isAdmin">ADD +</a>
     </div>
 
-    <div>
+    <div class="books__list">
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide" *ngFor="let book of books">
@@ -36,7 +36,7 @@
                     >{{ author._id === book.authorId ? author.name : "" }}</a
                   >
                 </div>
-                <div class="menu-mini">
+                <div class="menu-mini" *ngIf="isAdmin">
                   <button
                     mat-icon-button
                     [matMenuTriggerFor]="menu"
@@ -73,11 +73,11 @@
         Hot <span style="color: #3f51b5">Books</span>
       </h2>
     </div>
-    <div>
+    <div class="books__list">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" *ngFor="let book of books">
-            <div class="books__grid">
+          <div class="swiper-slide" *ngFor="let book of books | bookspipe">
+            <div class="books__grid" *ngIf="book.like > 10">
               <div class="content">
                 <div class="badge --hot" *ngIf="book.like > 10">Hot</div>
                 <img src="{{ book.image }}" alt="hinhanh" />
@@ -93,7 +93,7 @@
                     >{{ author._id === book.authorId ? author.name : "" }}</a
                   >
                 </div>
-                <div class="menu-mini">
+                <div class="menu-mini" *ngIf="isAdmin">
                   <button
                     mat-icon-button
                     [matMenuTriggerFor]="menu"

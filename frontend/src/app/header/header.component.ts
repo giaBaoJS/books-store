@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   }
   logOut() {
     localStorage.removeItem('profile');
+    window.location.reload();
   }
   public onToggleSidenav = () => {
     this.sidenavToggle.emit();

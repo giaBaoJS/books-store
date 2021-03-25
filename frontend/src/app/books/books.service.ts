@@ -29,4 +29,7 @@ export class BooksService {
   updateBook(id: string, bookData: Book) {
     return this.http.patch('http://localhost:5000/posts/' + id, bookData);
   }
+  likeBook(id: string) {
+    return this.http.get('http://localhost:5000/posts/' + id + '/vote');
+  }
 }

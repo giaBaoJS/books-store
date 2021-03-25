@@ -3,13 +3,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
   &__component {
     margin-bottom: 50px;
   }
   &__title {
     font-size: 35px;
+  }
+  &__list {
+    padding: 20px 0;
+    overflow: hidden;
+  }
+  .swiper-container {
+    overflow: unset;
   }
   .swiper-slide {
     height: auto;

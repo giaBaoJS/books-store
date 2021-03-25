@@ -26,8 +26,14 @@
       </div>
       <div class="group-btn">
         <div class="example-button-container">
-          <button mat-mini-fab >
-            <mat-icon>favorite</mat-icon>
+          <button
+            mat-mini-fab
+            [disabled]="clicked"
+            (click)="likeBook(book._id)"
+          >
+            <mat-icon [ngClass]="clicked ? 'pause' : 'heartbeat'"
+              >favorite</mat-icon
+            >
           </button>
         </div>
         <button

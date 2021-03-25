@@ -13,6 +13,7 @@ import { AuthorsService } from '../../authors/authors.service';
   styleUrls: ['./book-detail.component.scss'],
 })
 export class BookDetailComponent implements OnInit {
+  clicked = false;
   id: string;
   book: Book;
   author: Author;
@@ -42,5 +43,9 @@ export class BookDetailComponent implements OnInit {
   }
   goBack(): void {
     this.location.back();
+  }
+  likeBook(bookId: string) {
+    this.clicked = true;
+    this.bookService.likeBook(bookId).subscribe();
   }
 }

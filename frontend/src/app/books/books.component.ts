@@ -16,8 +16,12 @@ import { Author } from '../models/author';
   styleUrls: ['./books.component.scss'],
 })
 export class BooksComponent implements OnInit, AfterViewInit {
+  user;
+  isAdmin = false;
   isLoading = false;
   books: Book[] = [];
+  booksHot: Book[] = [];
+  booksNew: Book[] = [];
   p: number = 1;
   authors: Author[] = [];
   mySwiper: Swiper;
@@ -30,6 +34,10 @@ export class BooksComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('profile'));
+    if (this.user?.result.role === 'admin') {
+      this.isAdmin = true;
+    }
     this.fetchAll();
     this.fetchAllAuthor();
     this.spinner.show();
@@ -74,7 +82,9 @@ export class BooksComponent implements OnInit, AfterViewInit {
       this.spinner.hide();
     });
   }
-
+  filterItemsOfType() {
+    return this.books.filter((val) => val.like > 10);
+  }
   delBook(id: string) {
     const successTemplate = 'Xóa Thành Công !';
     const errorTemplate = 'Không thể xóa, đã xảy ra lỗi !';

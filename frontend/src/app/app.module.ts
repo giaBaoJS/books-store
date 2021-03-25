@@ -25,8 +25,12 @@ import { AuthorDetailComponent } from './authors/author-detail/author-detail.com
 import { SwiperModule } from 'swiper/angular';
 import { SidenavListComponent } from './header/sidenav-list/sidenav-list.component';
 import { UserComponent } from './user/user.component';
-
-
+import { BooksPipe } from './pipe/books.pipe';
+import { FilterDatepipe } from './pipe/filterDateBook.pipe';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth.guard';
+import { RoleGuardService } from './role-guard-service.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +46,8 @@ import { UserComponent } from './user/user.component';
     AuthorDetailComponent,
     SidenavListComponent,
     UserComponent,
+    BooksPipe,
+    FilterDatepipe,
   ],
   imports: [
     BrowserModule,
@@ -53,9 +59,10 @@ import { UserComponent } from './user/user.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     NgxSpinnerModule,
-    SwiperModule
+    SwiperModule,
+    InfiniteScrollModule,
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard, RoleGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
