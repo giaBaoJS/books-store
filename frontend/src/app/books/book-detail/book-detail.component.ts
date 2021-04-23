@@ -6,7 +6,8 @@ import { Location } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Author } from '../../models/author';
 import { AuthorsService } from '../../authors/authors.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { DialogExample } from '../../dialog/dialog-example.component';
 @Component({
   selector: 'app-book-detail',
   templateUrl: './book-detail.component.html',
@@ -22,7 +23,8 @@ export class BookDetailComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private location: Location,
     private spinner: NgxSpinnerService,
-    private authorService: AuthorsService
+    private authorService: AuthorsService,
+    public dialog: MatDialog
   ) {
     this.id = this.activeRoute.snapshot.paramMap.get('id');
   }
@@ -45,7 +47,13 @@ export class BookDetailComponent implements OnInit {
     this.location.back();
   }
   likeBook(bookId: string) {
-    this.clicked = true;
-    this.bookService.likeBook(bookId).subscribe();
+    if (localStorage.getItem('profile')) {
+      this.clicked = true;
+      this.bookService.likeBook(bookId).subscribe();
+    } else {
+      this.dialog.open(DialogExample, {
+        panelClass: 'dialog-responsive',
+      });
+    }
   }
 }

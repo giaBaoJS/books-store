@@ -33,7 +33,6 @@ const routes: Routes = [
   {
     path: 'authors/detail/:id',
     component: AuthorDetailComponent,
-    canActivate: [RoleGuardService],
   },
   {
     path: 'authors/add',

@@ -1,18 +1,27 @@
+@import '../../../styles.scss';
 .col-left {
-  width: calc(100% / 12 * 5);
+  width: calc(100% / 12 * 6);
   padding: 0 15px;
   img {
+    max-width: 100%;
     width: 100%;
     object-fit: cover;
   }
+  @include media(540px){
+    width: 100%;
+    margin-bottom: 30px;
+  }
 }
 .col-right {
-  width: calc(100% / 12 * 7);
+  width: calc(100% / 12 * 6);
   padding: 0 15px;
   display: flex;
   flex-direction: column;
   .content {
     flex-grow: 1;
+  }
+  @include media(540px){
+    width: 100%;
   }
 }
 .btn-detail {

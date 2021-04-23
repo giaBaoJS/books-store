@@ -31,6 +31,9 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth.guard';
 import { RoleGuardService } from './role-guard-service.guard';
+import { DialogExample } from './dialog/dialog-example.component';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +51,7 @@ import { RoleGuardService } from './role-guard-service.guard';
     UserComponent,
     BooksPipe,
     FilterDatepipe,
+    DialogExample,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +65,7 @@ import { RoleGuardService } from './role-guard-service.guard';
     NgxSpinnerModule,
     SwiperModule,
     InfiniteScrollModule,
+    FormsModule
   ],
   providers: [AuthService, AuthGuard, RoleGuardService],
   bootstrap: [AppComponent],
